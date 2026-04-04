@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#080808"/>
+<title>AI Design Machine — Affiches pro depuis ton téléphone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500;9..600&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --gold:       #C9A84C;
+  --gold-light: #E8C96A;
+  --gold-dim:   #8a6f30;
+  --gold-bg:    rgba(201,168,76,0.08);
+  --gold-border:rgba(201,168,76,0.2);
+  --black:      #080808;
+  --surface:    #111111;
+  --surface2:   #181818;
+  --border:     rgba(255,255,255,0.07);
+  --border-gold:rgba(201,168,76,0.18);
+  --text:       #f0ece0;
+  --muted:      #888880;
+  --danger:     #E24B4A;
+  --success:    #25D366;
+  --r-sm:       6px;
+  --r-md:       10px;
+  --r-lg:       14px;
+}
+
+/* ============================================================
+   RESET & BASE — Mobile first (375px baseline)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+button { font-family: inherit; }
+
+/* ============================================================
+   TYPOGRAPHY — Fluid scales
+   ============================================================ */
+.t-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.t-eyebrow::before {
+  content: '';
+  display: block;
+  width: 18px; height: 1px;
+  background: var(--gold-dim);
+  flex-shrink: 0;
+}
+h2 {
+  font-size: clamp(24px, 6.5vw, 40px);
+  color: #fff;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+h2 em { font-style: italic; color: var(--gold); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section { padding: 56px 0; }
+
+/* ============================================================
+   NAV — Mobile first
+   ============================================================ */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(8,8,8,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 0 16px;
+  height: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1;
+}
+.nav-cta {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-cta:active { background: var(--gold-light); }
+
+/* Desktop nav */
+@media (min-width: 768px) {
+  nav { padding: 0 32px; height: 60px; }
+  .nav-logo { font-size: 12px; }
+  .nav-cta { height: 40px; padding: 0 22px; font-size: 12px; }
+}
+
+/* ============================================================
+   HERO — Mobile first
+   ============================================================ */
+.hero {
+  min-height: 100svh;
+  min-height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  background: #07060100;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 50% at 55% 25%, rgba(201,168,76,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 15%, rgba(201,168,76,0.04) 0%, transparent 60%),
+    #070600;
+}
+.hero-fade {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,6,0,0.05) 0%,
+    rgba(7,6,0,0.3) 40%,
+    rgba(7,6,0,0.85) 70%,
+    rgba(8,8,8,1) 100%
+  );
+  z-index: 1;
+}
+
+/* POSTERS STAGE */
+.posters-stage {
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 45vw;
+  z-index: 0;
+}
+.poster-wrap {
+  position: relative;
+  /* Scale based on viewport width for tiny screens */
+  width: min(280px, 74vw);
+  height: min(380px, 100vw);
+}
+
+/* MAIN POSTER */
+.poster-main {
+  position: absolute;
+  width: min(200px, 54vw);
+  height: min(270px, 72vw);
+  left: 0; top: 10%;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transform: rotate(-3deg);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 0 1px rgba(201,168,76,0.2);
+  animation: floatA 6s ease-in-out infinite;
+}
+@keyframes floatA {
+  0%,100% { transform: rotate(-3deg) translateY(0); }
+  50%      { transform: rotate(-3deg) translateY(-8px); }
+}
+.pm-inner {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #0d0b06, #1c1508, #0a0805);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.pm-glow {
+  position: absolute; top: 18%; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(201,168,76,0.35) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.pm-bottle {
+  position: relative; z-index: 2;
+  width: 44px; height: 72px;
+  background: linear-gradient(150deg, rgba(255,210,90,0.9), rgba(180,135,45,0.75), rgba(100,75,18,0.85));
+  border-radius: 6px 6px 3px 3px;
+  box-shadow: 0 0 24px rgba(201,168,76,0.4), inset 0 0 14px rgba(255,255,255,0.06);
+  margin-top: 10px;
+}
+.pm-bottle::before {
+  content: '';
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 10px;
+  background: linear-gradient(to bottom, rgba(201,168,76,0.9), rgba(160,120,40,0.8));
+  border-radius: 2px 2px 0 0;
+}
+.pm-shine {
+  position: absolute; top: 6px; left: 7px;
+  width: 5px; height: 28px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+  border-radius: 3px;
+}
+.pm-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 18px 12px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.96), transparent);
+}
+.pm-brand { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-align: center; }
+.pm-sub { font-size: 7px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(201,168,76,0.45); text-align: center; margin-top: 2px; }
+.pm-price { font-size: 11px; color: rgba(201,168,76,0.6); text-align: center; margin-top: 5px; }
+.pm-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--gold); color: var(--black);
+  font-size: 7px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 2px 6px; border-radius: 2px;
+}
+
+/* SECONDARY POSTER */
+.poster-sec {
+  position: absolute;
+  width: min(150px, 40vw);
+  height: min(200px, 54vw);
+  right: 0; top: 5%;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  transform: rotate(4.5deg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06);
+  animation: floatB 7s ease-in-out infinite;
+}
+@keyframes floatB {
+  0%,100% { transform: rotate(4.5deg) translateY(0); }
+  50%      { transform: rotate(4.5deg) translateY(-6px); }
+}
+.ps-inner {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #0f0a1a, #1a1028, #0a0610);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.ps-accent { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, #9b59b6, transparent); }
+.ps-figure {
+  width: 48px; height: 78px;
+  background: linear-gradient(160deg, rgba(155,89,182,0.4), rgba(88,44,130,0.55));
+  border-radius: 24px 24px 14px 14px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(155,89,182,0.2);
+  margin-top: 12px;
+}
+.ps-figure::before {
+  content: '';
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(200,175,220,0.65), rgba(155,89,182,0.5));
+}
+.ps-label {
+  position: absolute; bottom: 10px; left: 0; right: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px; color: rgba(200,165,240,0.88);
+  letter-spacing: 0.06em; text-align: center;
+}
+.ps-sub {
+  position: absolute; bottom: 3px; left: 0; right: 0;
+  font-size: 6px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(150,100,200,0.45); text-align: center;
+}
+
+/* HERO CONTENT */
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 20px;
+  padding-bottom: max(28px, env(safe-area-inset-bottom, 16px));
+  padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  margin-bottom: 16px;
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500;
+  margin-bottom: 16px;
+}
+.hero-pill-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+  animation: blink 1.8s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+h1 {
+  font-size: clamp(28px, 8.5vw, 48px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.1;
+}
+h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 14px;
+  color: rgba(240,236,224,0.6);
+  font-weight: 300;
+  margin-bottom: 24px;
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* CTA BUTTONS */
+.cta-stack { display: flex; flex-direction: column; gap: 10px; }
+.btn-primary {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 52px;
+  width: 100%;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.18s, transform 0.1s;
+}
+.btn-primary:active { background: var(--gold-light); transform: scale(0.98); }
+.btn-ghost {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 44px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: underline;
+  background: none; border: none; cursor: pointer; width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Social proof row */
+.social-proof {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 20px;
+  font-size: 11px; color: var(--muted);
+}
+.avatars { display: flex; }
+.av {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--black);
+  font-size: 8px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  margin-left: -7px; flex-shrink: 0;
+}
+.av:first-child { margin-left: 0; }
+.av1 { background: #2d6a4f; color: #95d5b2; }
+.av2 { background: #3d405b; color: #9999cc; }
+.av3 { background: #6b3a2a; color: #e8a87c; }
+.av4 { background: #2c3e50; color: #85c1e9; }
+
+/* Desktop hero adjustments */
+@media (min-width: 768px) {
+  .posters-stage { padding-bottom: 260px; }
+  .poster-wrap { width: 320px; height: 440px; }
+  .poster-main { width: 230px; height: 310px; }
+  .pm-bottle { width: 58px; height: 90px; }
+  .pm-brand { font-size: 18px; }
+  .poster-sec { width: 175px; height: 235px; }
+  .hero-content { padding: 0 32px; margin-bottom: 24px; }
+  .hero-sub { font-size: 16px; max-width: 380px; }
+  .btn-primary { font-size: 15px; }
+}
+
+/* ============================================================
+   PAIN SECTION
+   ============================================================ */
+.pain-section {
+  border-top: 1px solid var(--border-gold);
+}
+.pain-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.pain-card {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.pain-icon {
+  width: 40px; height: 40px; border-radius: var(--r-sm);
+  flex-shrink: 0;
+  background: rgba(226,75,74,0.1);
+  border: 1px solid rgba(226,75,74,0.18);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.pain-title { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+.pain-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+/* ============================================================
+   PROOF SECTION
+   ============================================================ */
+.proof-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+/* --- CSS Poster Cards --- */
+.pcard {
+  aspect-ratio: 3/4;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+.pcard-mark {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(201,168,76,0.7); text-align: center;
+  padding: 18px 8px 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Card 1 — Cosmétique */
+.pc1 { background: linear-gradient(160deg, #0a0805, #160e0a, #0a0805); }
+.pc1-glow {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse 80% 55% at 50% 38%, rgba(180,100,55,0.22) 0%, transparent 70%);
+}
+.pc1-badge { position: absolute; top: 10px; right: 10px; background: var(--gold); color: var(--black); font-size: 7px; font-weight: 700; letter-spacing: 0.1em; padding: 2px 6px; border-radius: 2px; }
+.pc1-products {
+  position: absolute; top: 14%; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; align-items: flex-end;
+}
+.pc1-jar {
+  width: 38px; height: 30px;
+  background: linear-gradient(135deg, rgba(220,175,110,0.9), rgba(160,108,55,0.8));
+  border-radius: 5px 5px 3px 3px;
+  box-shadow: 0 6px 18px rgba(180,100,55,0.3), inset 0 1px 3px rgba(255,255,255,0.12);
+  position: relative;
+}
+.pc1-jar::after {
+  content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+  width: 32px; height: 8px;
+  background: linear-gradient(to bottom, rgba(235,190,120,0.9), rgba(198,148,75,0.8));
+  border-radius: 2px 2px 0 0;
+}
+.pc1-serum {
+  width: 16px; height: 50px;
+  background: linear-gradient(to bottom, rgba(220,175,110,0.85), rgba(140,88,38,0.75));
+  border-radius: 3px 3px 2px 2px;
+  box-shadow: 0 6px 16px rgba(180,100,55,0.2);
+  position: relative;
+}
+.pc1-serum::before {
+  content: ''; position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+  width: 6px; height: 9px; background: rgba(198,155,75,0.8); border-radius: 2px 2px 0 0;
+}
+.pc1-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(10,8,5,0.97), rgba(10,8,5,0.8), transparent);
+  padding: 22px 10px 10px;
+}
+.pc1-brand { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--gold); letter-spacing: 0.06em; }
+.pc1-sub { font-size: 7px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(201,168,76,0.4); margin-top: 1px; }
+.pc1-price { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.55); margin-top: 4px; }
+
+/* Card 2 — Mode */
+.pc2 { background: linear-gradient(160deg, #080514, #100820, #080514); }
+.pc2-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 45% at 50% 30%, rgba(130,55,200,0.18) 0%, transparent 70%);
+}
+.pc2-top { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, rgba(150,80,220,0.6), transparent); }
+.pc2-tag { position: absolute; top: 10px; left: 10px; border: 1px solid rgba(150,80,220,0.35); color: rgba(180,130,245,0.8); font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+.pc2-figure {
+  position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 105px;
+}
+.pc2-head {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(210,182,235,0.7), rgba(155,89,182,0.55));
+}
+.pc2-body {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 42px; height: 78px;
+  background: linear-gradient(160deg, rgba(170,108,215,0.5), rgba(95,46,152,0.6));
+  border-radius: 16px 16px 8px 8px;
+}
+.pc2-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(8,5,16,0.97), rgba(8,5,16,0.75), transparent);
+  padding: 22px 10px 10px;
+}
+.pc2-brand { font-family: 'Playfair Display', serif; font-size: 14px; color: rgba(200,155,248,0.9); letter-spacing: 0.07em; }
+.pc2-sub { font-size: 7px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(150,100,200,0.4); margin-top: 1px; }
+
+/* Card 3 — Food */
+.pc3 { background: linear-gradient(160deg, #0a0600, #160a00, #0a0600); }
+.pc3-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 38%, rgba(200,95,18,0.2) 0%, transparent 70%);
+}
+.pc3-badge { position: absolute; top: 10px; right: 10px; background: rgba(218,110,35,0.88); color: #fff; font-size: 7px; font-weight: 700; letter-spacing: 0.1em; padding: 2px 6px; border-radius: 2px; }
+.pc3-plate {
+  position: absolute; top: 12%; left: 50%; transform: translateX(-50%);
+  width: 72px; height: 72px;
+}
+.pc3-rim {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(240,215,175,0.1), rgba(180,138,75,0.08));
+  border: 1px solid rgba(201,168,76,0.14);
+  display: flex; align-items: center; justify-content: center;
+}
+.pc3-food {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(218,122,38,0.92), rgba(178,72,18,0.85), rgba(138,55,8,0.9));
+  box-shadow: 0 5px 16px rgba(195,75,15,0.3);
+  position: relative;
+}
+.pc3-food::after {
+  content: '';
+  position: absolute; top: 22%; left: 18%;
+  width: 28%; height: 28%; border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+}
+.pc3-garnish {
+  position: absolute; top: -4px; right: 6px;
+  width: 10px; height: 15px;
+  background: linear-gradient(to bottom, rgba(72,155,55,0.8), rgba(38,118,28,0.65));
+  border-radius: 50% 50% 28% 28%;
+  transform: rotate(14deg);
+}
+.pc3-steam {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 4px;
+}
+.pc3-s { width: 2px; border-radius: 1px; background: linear-gradient(to top, rgba(255,195,140,0.25), transparent); }
+.pc3-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(10,6,0,0.97), rgba(10,6,0,0.78), transparent);
+  padding: 22px 10px 10px;
+}
+.pc3-brand { font-family: 'Playfair Display', serif; font-size: 14px; color: rgba(238,172,72,0.9); letter-spacing: 0.05em; }
+.pc3-sub { font-size: 7px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(198,125,35,0.38); margin-top: 1px; }
+.pc3-price { font-size: 11px; font-weight: 500; color: rgba(255,195,100,0.6); margin-top: 4px; }
+
+/* Card 4 — Tech */
+.pc4 { background: linear-gradient(160deg, #050810, #080f1c, #050810); }
+.pc4-grid {
+  position: absolute; inset: 0; opacity: 0.05;
+  background-image: linear-gradient(rgba(0,145,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,145,255,0.5) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+.pc4-glow {
+  position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+  width: 90px; height: 90px;
+  background: radial-gradient(circle, rgba(0,145,255,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.pc4-top { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, rgba(0,145,255,0.5), transparent); }
+.pc4-badge { position: absolute; top: 10px; left: 10px; border: 1px solid rgba(0,145,255,0.3); color: rgba(72,158,255,0.8); font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+.pc4-device {
+  position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+  width: 52px; height: 92px;
+  background: linear-gradient(160deg, rgba(38,56,86,0.9), rgba(18,28,48,0.95));
+  border-radius: 8px;
+  border: 1px solid rgba(0,145,255,0.18);
+  box-shadow: 0 0 24px rgba(0,115,250,0.14), 0 16px 32px rgba(0,0,0,0.6);
+  display: flex; flex-direction: column; align-items: center;
+}
+.pc4-screen {
+  width: 40px; height: 60px; border-radius: 5px;
+  margin-top: 8px;
+  background: linear-gradient(160deg, rgba(0,96,195,0.5), rgba(0,56,135,0.7));
+  border: 1px solid rgba(0,145,255,0.14);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+}
+.pc4-line { height: 2px; border-radius: 1px; background: rgba(0,145,255,0.4); }
+.pc4-btn { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,145,255,0.18); margin-top: 5px; }
+.pc4-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(5,8,16,0.97), rgba(5,8,16,0.78), transparent);
+  padding: 22px 10px 10px;
+}
+.pc4-brand { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(72,155,255,0.9); letter-spacing: 0.14em; text-transform: uppercase; }
+.pc4-sub { font-size: 7px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,115,200,0.38); margin-top: 1px; }
+
+/* Proof caption */
+.proof-caption {
+  margin-top: 12px; text-align: center;
+  font-size: 11px; color: var(--muted); font-style: italic;
+}
+
+/* ============================================================
+   TESTIMONIAL
+   ============================================================ */
+.testi-card {
+  background: var(--surface2);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--r-lg);
+  padding: 22px 18px;
+  margin-top: 14px;
+  position: relative;
+}
+.testi-card::before {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 64px; line-height: 1;
+  color: var(--gold); opacity: 0.12;
+  position: absolute; top: 6px; left: 14px;
+  pointer-events: none;
+}
+.testi-stars { font-size: 13px; margin-bottom: 10px; letter-spacing: 1px; }
+.testi-text {
+  font-size: 14px; color: rgba(240,236,224,0.78);
+  font-style: italic; line-height: 1.75;
+  padding-top: 10px;
+}
+.testi-author {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 16px;
+}
+.testi-av {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dim), #4a3015);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; color: rgba(255,215,115,0.9);
+  flex-shrink: 0;
+}
+.testi-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.testi-loc { font-size: 11px; color: var(--muted); }
+
+/* ============================================================
+   GETS
+   ============================================================ */
+.gets-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.get-item {
+  display: flex; gap: 14px; padding: 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  align-items: flex-start;
+}
+.get-icon {
+  width: 40px; height: 40px; border-radius: var(--r-sm);
+  background: var(--gold-bg); border: 1px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.get-title { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 3px; }
+.get-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+.bonus-item { border-color: rgba(201,168,76,0.22); background: rgba(201,168,76,0.04); }
+.bonus-badge {
+  display: inline-block;
+  font-size: 8px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 2px 7px; border-radius: 2px;
+  background: var(--gold); color: var(--black); margin-bottom: 4px;
+}
+
+/* ============================================================
+   OBJECTIONS
+   ============================================================ */
+.obj-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px; margin-top: 24px;
+}
+.obj-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 12px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  min-height: 44px;
+}
+.obj-no { background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
+.obj-yes { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15); color: rgba(240,236,224,0.7); }
+.obj-x { color: var(--danger); font-size: 14px; flex-shrink: 0; line-height: 1; }
+.obj-check { color: var(--gold); font-size: 14px; flex-shrink: 0; line-height: 1; }
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.price-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border-gold);
+}
+.price-box {
+  background: var(--black);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--r-lg);
+  padding: 26px 20px;
+  margin-top: 28px;
+  position: relative; overflow: hidden;
+}
+.price-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.price-crossed { font-size: 15px; text-decoration: line-through; color: var(--muted); margin-bottom: 2px; }
+.price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
+.price-curr { font-size: 16px; color: var(--gold-dim); margin-right: 2px; }
+.price-big { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: var(--gold); line-height: 1; }
+.price-note { font-size: 11px; color: var(--muted); margin-bottom: 18px; }
+.urgency-bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px;
+  background: rgba(201,168,76,0.07);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: var(--r-sm);
+  margin-bottom: 18px;
+  font-size: 12px; color: rgba(218,182,72,0.9);
+}
+.u-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+  animation: blink 1.8s infinite;
+}
+.includes { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+.inc-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: rgba(240,236,224,0.7);
+}
+.inc-check { color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+.btn-whatsapp {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 52px; width: 100%;
+  background: var(--success); color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  margin-top: 10px;
+  border: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.18s;
+}
+.btn-whatsapp:active { background: #1ea550; }
+.guarantee {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  margin-top: 14px;
+  font-size: 11px; color: rgba(255,255,255,0.22);
+  text-align: center;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-list { margin-top: 24px; }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.faq-btn {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; min-height: 56px;
+  background: none; border: none;
+  padding: 16px 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; color: var(--text);
+  text-align: left; cursor: pointer; gap: 14px;
+  -webkit-tap-highlight-color: transparent;
+}
+.faq-btn:active { color: var(--gold); }
+.faq-icon {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.14);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--muted); flex-shrink: 0;
+  transition: all 0.25s; line-height: 1;
+}
+.faq-item.open .faq-icon { border-color: var(--gold); color: var(--gold); transform: rotate(45deg); }
+.faq-answer {
+  font-size: 13px; color: var(--muted); line-height: 1.75;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.32s ease, padding 0.32s;
+}
+.faq-item.open .faq-answer { max-height: 220px; padding-bottom: 18px; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.final-section {
+  text-align: center;
+  border-top: 1px solid var(--border-gold);
+}
+.final-sub { font-size: 13px; color: var(--muted); margin-bottom: 26px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 36px 20px calc(36px + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  font-size: 11px; color: rgba(255,255,255,0.18); line-height: 2;
+}
+footer a { color: rgba(255,255,255,0.26); text-decoration: none; }
+.footer-logo {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+  color: rgba(201,168,76,0.35); margin-bottom: 14px;
+}
+
+/* ============================================================
+   STICKY WHATSAPP BUTTON (mobile only)
+   ============================================================ */
+.sticky-wa {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  right: 16px;
+  z-index: 150;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--success);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 28px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.sticky-wa.hidden { opacity: 0; pointer-events: none; transform: translateY(8px); }
+/* Hide on desktop */
+@media (min-width: 768px) { .sticky-wa { display: none; } }
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+.divider { height: 1px; background: var(--border-gold); }
+
+/* ============================================================
+   FADE-IN ON SCROLL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero content animates on load */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-pill    { animation: fadeUp 0.6s ease 0.05s both; }
+.hero h1      { animation: fadeUp 0.6s ease 0.15s both; }
+.hero-sub     { animation: fadeUp 0.6s ease 0.25s both; }
+.cta-stack    { animation: fadeUp 0.6s ease 0.35s both; }
+.social-proof { animation: fadeUp 0.6s ease 0.45s both; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     STICKY WHATSAPP
+     ============================================================ -->
+<a href="https://wa.me/TONNUM" class="sticky-wa" id="stickyWa" aria-label="Contacter sur WhatsApp">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Question ?
+</a>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav>
+  <span class="nav-logo">Marx Digital</span>
+  <a href="#prix" class="nav-cta">5 000 F CFA →</a>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-fade"></div>
+
+  <div class="posters-stage" aria-hidden="true">
+    <div class="poster-wrap">
+      <!-- Poster principal — Parfum -->
+      <div class="poster-main">
+        <div class="pm-inner">
+          <div class="pm-glow"></div>
+          <div class="pm-badge">NOUVEAU</div>
+          <div class="pm-bottle"><div class="pm-shine"></div></div>
+          <div class="pm-bottom">
+            <div class="pm-brand">AURORE</div>
+            <div class="pm-sub">Eau de Parfum · 50ml</div>
+            <div class="pm-price">35 000 F CFA</div>
+          </div>
+        </div>
+      </div>
+      <!-- Poster secondaire — Mode -->
+      <div class="poster-sec">
+        <div class="ps-inner">
+          <div class="ps-accent"></div>
+          <div class="ps-figure"></div>
+          <div class="ps-label">VELOUR</div>
+          <div class="ps-sub">Collection Été</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-content container">
+    <div class="hero-pill">
+      <span class="hero-pill-dot" aria-hidden="true"></span>
+      Mini-formation · Accès immédiat
+    </div>
+    <h1>Tes affiches méritent<br>mieux qu'un<br><em>graphiste.</em></h1>
+    <p class="hero-sub">Crée des visuels 100% pro depuis ton téléphone — en 5 minutes, sans Photoshop, sans budget design.</p>
+    <div class="cta-stack">
+      <a href="#prix" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
+      <button class="btn-ghost" onclick="document.getElementById('preuves').scrollIntoView({behavior:'smooth'})">Voir des exemples d'abord</button>
+    </div>
+    <div class="social-proof">
+      <div class="avatars" aria-hidden="true">
+        <div class="av av1">AK</div>
+        <div class="av av2">MS</div>
+        <div class="av av3">FD</div>
+        <div class="av av4">RB</div>
+      </div>
+      <span>Déjà utilisé par des entrepreneurs au Bénin</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAIN
+     ============================================================ -->
+<section class="section pain-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="t-eyebrow">Le problème</p>
+      <h2>Tu bosses dur.<br>Tes visuels ne le<br><em>montrent pas.</em></h2>
+      <div class="pain-cards">
+        <div class="pain-card">
+          <div class="pain-icon" aria-hidden="true">💸</div>
+          <div>
+            <div class="pain-title">Le graphiste vide ton compte</div>
+            <div class="pain-desc">15 000 à 50 000 F CFA par affiche. Chaque promo devient une perte avant même d'avoir vendu.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon" aria-hidden="true">⏳</div>
+          <div>
+            <div class="pain-title">Des heures perdues sur Photoshop</div>
+            <div class="pain-desc">Tutos de 4h, résultat amateur, et la promo qui devait sortir lundi sort le vendredi.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon" aria-hidden="true">😤</div>
+          <div>
+            <div class="pain-title">La concurrence te dépasse</div>
+            <div class="pain-desc">La boutique d'en face explose ses ventes avec des affiches qui claquent. Toi tu postes une image bancale.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROOF
+     ============================================================ -->
+<section class="section proof-section" id="preuves">
+  <div class="container">
+    <div class="reveal">
+      <p class="t-eyebrow">La preuve</p>
+      <h2>Des affiches que tu<br>croiras faites par un<br><em>graphiste.</em></h2>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px;">Toutes générées avec les formules exactes du guide — depuis un téléphone.</p>
+
+      <div class="proof-grid">
+        <!-- Cosmétiques -->
+        <div class="pcard pc1">
+          <div class="pc1-glow"></div>
+          <div class="pc1-badge">PROMO</div>
+          <div class="pc1-products">
+            <div class="pc1-jar"></div>
+            <div class="pc1-serum"></div>
+          </div>
+          <div class="pc1-bottom">
+            <div class="pc1-brand">LUMIÈRE</div>
+            <div class="pc1-sub">Cosmétiques naturels</div>
+            <div class="pc1-price">12 500 F CFA</div>
+          </div>
+          <div class="pcard-mark">Généré avec la méthode</div>
+        </div>
+        <!-- Mode -->
+        <div class="pcard pc2">
+          <div class="pc2-glow"></div>
+          <div class="pc2-top"></div>
+          <div class="pc2-tag">NEW SEASON</div>
+          <div class="pc2-figure">
+            <div class="pc2-head"></div>
+            <div class="pc2-body"></div>
+          </div>
+          <div class="pc2-bottom">
+            <div class="pc2-brand">VELOUR</div>
+            <div class="pc2-sub">Mode & Élégance</div>
+          </div>
+          <div class="pcard-mark">Généré avec la méthode</div>
+        </div>
+        <!-- Food -->
+        <div class="pcard pc3">
+          <div class="pc3-glow"></div>
+          <div class="pc3-badge">CHEF'S PICK</div>
+          <div style="position:absolute;top:12%;left:50%;transform:translateX(-50%);">
+            <div class="pc3-steam">
+              <div class="pc3-s" style="height:12px;margin-top:3px;"></div>
+              <div class="pc3-s" style="height:15px;"></div>
+              <div class="pc3-s" style="height:10px;margin-top:5px;"></div>
+            </div>
+            <div class="pc3-rim">
+              <div class="pc3-food"><div class="pc3-garnish"></div></div>
+            </div>
+          </div>
+          <div class="pc3-bottom">
+            <div class="pc3-brand">SAVANA</div>
+            <div class="pc3-sub">Restaurant gastronomique</div>
+            <div class="pc3-price">8 500 F CFA</div>
+          </div>
+          <div class="pcard-mark">Généré avec la méthode</div>
+        </div>
+        <!-- Tech -->
+        <div class="pcard pc4">
+          <div class="pc4-grid"></div>
+          <div class="pc4-glow"></div>
+          <div class="pc4-top"></div>
+          <div class="pc4-badge">PRO MAX</div>
+          <div class="pc4-device">
+            <div class="pc4-screen">
+              <div class="pc4-line" style="width:78%"></div>
+              <div class="pc4-line" style="width:58%"></div>
+              <div class="pc4-line" style="width:38%"></div>
+              <div class="pc4-line" style="width:58%"></div>
+            </div>
+            <div class="pc4-btn"></div>
+          </div>
+          <div class="pc4-bottom">
+            <div class="pc4-brand">NEXUS</div>
+            <div class="pc4-sub">Électronique premium</div>
+          </div>
+          <div class="pcard-mark">Généré avec la méthode</div>
+        </div>
+      </div>
+      <p class="proof-caption">↑ Remplace par tes vraies images générées</p>
+
+      <div class="testi-card">
+        <div class="testi-stars" aria-label="5 étoiles">⭐⭐⭐⭐⭐</div>
+        <p class="testi-text">"J'ai suivi le guide un dimanche après-midi. Le lundi matin, j'avais 3 messages de clients qui me demandaient le nom de mon graphiste."</p>
+        <div class="testi-author">
+          <div class="testi-av" aria-hidden="true">AK</div>
+          <div>
+            <div class="testi-name">Adjibi K.</div>
+            <div class="testi-loc">Entrepreneur e-commerce, Cotonou</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GETS
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="t-eyebrow">Contenu du guide</p>
+      <h2>Tout ce qu'il faut.<br><em>Rien de superflu.</em></h2>
+      <div class="gets-list">
+        <div class="get-item">
+          <div class="get-icon" aria-hidden="true">📋</div>
+          <div>
+            <div class="get-title">Formules IA à copier-coller</div>
+            <div class="get-desc">Mes prompts exacts pour un rendu 100% réaliste. Tu copies, tu colles, ton affiche est prête en 5 min.</div>
+          </div>
+        </div>
+        <div class="get-item">
+          <div class="get-icon" aria-hidden="true">📱</div>
+          <div>
+            <div class="get-title">Configuration pas à pas</div>
+            <div class="get-desc">Quelle appli utiliser, comment tout configurer depuis ton téléphone — expliqué en moins d'une heure.</div>
+          </div>
+        </div>
+        <div class="get-item">
+          <div class="get-icon" aria-hidden="true">⚡</div>
+          <div>
+            <div class="get-title">Prompts pour tes accroches</div>
+            <div class="get-desc">Un visuel pro ne suffit pas sans un texte qui vend. Tu génères tes accroches aussi avec l'IA.</div>
+          </div>
+        </div>
+        <div class="get-item bonus-item">
+          <div class="get-icon" aria-hidden="true">🎁</div>
+          <div>
+            <div class="bonus-badge">BONUS GRATUIT</div>
+            <div class="get-title">L'Accroche Qui Vend</div>
+            <div class="get-desc">Ma méthode secrète pour des textes publicitaires qui déclenchent l'achat instantanément.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OBJECTIONS
+     ============================================================ -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="t-eyebrow">Pour lever tes doutes</p>
+      <h2>Tu n'as besoin de<br><em>rien de tout ça.</em></h2>
+      <div class="obj-grid">
+        <div class="obj-item obj-no"><span class="obj-x" aria-hidden="true">✕</span> Photoshop</div>
+        <div class="obj-item obj-no"><span class="obj-x" aria-hidden="true">✕</span> Ordi puissant</div>
+        <div class="obj-item obj-no"><span class="obj-x" aria-hidden="true">✕</span> Œil artistique</div>
+        <div class="obj-item obj-no"><span class="obj-x" aria-hidden="true">✕</span> Freelance</div>
+        <div class="obj-item obj-no"><span class="obj-x" aria-hidden="true">✕</span> Tutos de 4h</div>
+        <div class="obj-item obj-no"><span class="obj-x" aria-hidden="true">✕</span> Adobe CC</div>
+      </div>
+      <div style="height:10px;"></div>
+      <div class="obj-grid">
+        <div class="obj-item obj-yes"><span class="obj-check" aria-hidden="true">✓</span> Ton téléphone</div>
+        <div class="obj-item obj-yes"><span class="obj-check" aria-hidden="true">✓</span> Ce guide</div>
+        <div class="obj-item obj-yes" style="grid-column:1/-1;"><span class="obj-check" aria-hidden="true">✓</span> Une connexion internet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRICING
+     ============================================================ -->
+<section class="section price-section" id="prix">
+  <div class="container">
+    <div class="reveal">
+      <p class="t-eyebrow">Tarif</p>
+      <h2>Un investissement qui<br>se rembourse dès la<br><em>première affiche.</em></h2>
+      <div class="price-box">
+        <div class="price-crossed">20 000 F CFA</div>
+        <div class="price-row">
+          <span class="price-curr">FCFA</span>
+          <span class="price-big">5 000</span>
+        </div>
+        <div class="price-note">Prix de lancement · Paiement unique · Accès à vie</div>
+        <div class="urgency-bar">
+          <div class="u-dot" aria-hidden="true"></div>
+          Prix de lancement — peut augmenter à tout moment
+        </div>
+        <div class="includes">
+          <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Guide AI Design Machine (12 pages, 1h)</div>
+          <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Toutes les formules IA à copier-coller</div>
+          <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Configuration étape par étape</div>
+          <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Bonus : L'Accroche Qui Vend (offert)</div>
+          <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Accès aux futures mises à jour</div>
+        </div>
+        <a href="#" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
+        <a href="https://wa.me/TONNUM" class="btn-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Une question ? WhatsApp
+        </a>
+        <div class="guarantee">🔒 Paiement sécurisé · Accès immédiat après paiement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="t-eyebrow">Questions fréquentes</p>
+      <h2>Tu as des doutes ?<br><em>C'est normal.</em></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            Mes clients verront que c'est de l'IA ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">Non — à condition d'utiliser les bonnes formules. Sans la méthode, l'IA produit des images "robotiques". Avec, le rendu est indiscernable d'un graphiste pro. C'est exactement ce que le guide t'enseigne.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            Mon téléphone est-il assez puissant ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">Oui. L'application fonctionne sur n'importe quel smartphone avec une connexion internet, même les modèles d'entrée de gamme.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            Je peux vraiment faire ça en une après-midi ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">Oui. Le guide fait 12 pages et se lit en moins d'une heure. La plupart des gens génèrent leur première affiche professionnelle dans la foulée, le jour même.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            Et si je ne suis pas satisfait ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">Tu es couvert par notre garantie. Si tu appliques la méthode et que le résultat ne te convainc pas, contacte-nous sur WhatsApp et on trouve une solution ensemble.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<div class="divider"></div>
+<section class="section final-section">
+  <div class="container">
+    <div class="reveal">
+      <h2>Prêt à lancer des promos<br>qui font enfin <em>vendre ?</em></h2>
+      <p class="final-sub">Rejoins les entrepreneurs qui ont arrêté de jeter leur argent chez un graphiste.</p>
+      <a href="#prix" class="btn-primary" style="max-width:420px;margin:0 auto;">Obtenir AI Design Machine — 5 000 F CFA →</a>
+      <a href="https://wa.me/TONNUM" class="btn-whatsapp" style="max-width:420px;margin:10px auto 0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp — Une question avant d'acheter ?
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<div class="divider"></div>
+<footer>
+  <div class="container">
+    <div class="footer-logo">MARX DIGITAL EMPIRE</div>
+    <div>© 2026 Marx Digital Empire · Tous droits réservés</div>
+    <div style="margin-top:6px;">
+      <a href="#">Mentions légales</a> · <a href="#">CGU</a> · <a href="#">Confidentialité</a>
+    </div>
+    <div style="margin-top:14px;font-size:10px;line-height:1.8;color:rgba(255,255,255,0.14);">
+      Ce site n'est pas affilié à Facebook ou Meta. Les résultats présentés ne sont pas garantis et dépendent de l'application de la méthode.
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// Reveal on scroll (IntersectionObserver)
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
+} else {
+  reveals.forEach(el => el.classList.add('visible'));
+}
+
+// Sticky WhatsApp — hide when hero CTA is visible, show after
+const wa = document.getElementById('stickyWa');
+const heroCta = document.querySelector('.hero .cta-stack');
+if (wa && heroCta) {
+  const waObs = new IntersectionObserver((entries) => {
+    wa.classList.toggle('hidden', entries[0].isIntersecting);
+  }, { threshold: 0.5 });
+  waObs.observe(heroCta);
+}
+</script>
+</body>
+</html>
