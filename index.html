@@ -153,44 +153,29 @@ nav {
 
 /* ============================================================
    SLIDESHOW
-   ============================================================
-   Placement stratégique : entre le sous-titre et le CTA.
-   Le lecteur lit l'accroche → voit la preuve défiler → CTA.
-   
-   🎯 NOTE : Remplace les src="" par tes 4 vraies images.
-   Format idéal : 3/4 portrait, <100KB chacune.
-   Nomme-les : affiche-1.jpg, affiche-2.jpg, etc.
-   dans un dossier "images/" de ton repo GitHub.
    ============================================================ */
 .slideshow {
   position: relative;
   width: 100%;
   margin-bottom: 28px;
-  /* Hauteur fixe mobile : assez grande pour voir l'image,
-     assez petite pour que le CTA reste dans le viewport */
-  height: 220px;
+  height: 260px;
   border-radius: var(--r-md);
   overflow: hidden;
-  /* Bordure dorée subtile pour encadrer les images */
   border: 1px solid rgba(201,168,76,0.12);
-  /* Ombre pour détacher du fond noir */
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   -webkit-tap-highlight-color: transparent;
-  /* Empêche le select text sur mobile quand on swipe */
   user-select: none;
   -webkit-user-select: none;
+  background: #0a0a0a;
 }
 
-/* Track : contient les 4 slides côte à côte */
 .slideshow-track {
   display: flex;
   height: 100%;
-  /* Transition fluide — pas trop lente (0.45s = sweet spot) */
   transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
   will-change: transform;
 }
 
-/* Chaque slide = 100% de la largeur du slideshow */
 .slideshow-slide {
   flex: 0 0 100%;
   width: 100%;
@@ -199,11 +184,10 @@ nav {
 }
 .slideshow-slide img {
   width: 100%; height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
-/* Label en bas de chaque slide */
 .slide-label {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -218,7 +202,6 @@ nav {
   pointer-events: none;
 }
 
-/* ---- Dots indicateurs ---- */
 .slideshow-dots {
   position: absolute;
   bottom: 10px; left: 50%;
@@ -238,11 +221,9 @@ nav {
   background: var(--gold);
   width: 18px;
   border-radius: 3px;
-  /* Glow doré sur le dot actif */
   box-shadow: 0 0 8px rgba(201,168,76,0.4);
 }
 
-/* ---- Flèches latérales (desktop uniquement) ---- */
 .slide-arrow {
   position: absolute;
   top: 50%; transform: translateY(-50%);
@@ -251,7 +232,7 @@ nav {
   background: rgba(0,0,0,0.6);
   border: 1px solid rgba(255,255,255,0.1);
   color: #fff;
-  display: none; /* Caché sur mobile */
+  display: none;
   align-items: center; justify-content: center;
   cursor: pointer; z-index: 5;
   font-size: 14px;
@@ -265,7 +246,6 @@ nav {
 .slide-arrow.prev { left: 8px; }
 .slide-arrow.next { right: 8px; }
 
-/* ---- Barre de progression auto-play ---- */
 .slide-progress {
   position: absolute;
   top: 0; left: 0; height: 2px;
@@ -333,33 +313,18 @@ nav {
   nav { padding: 0 32px; height: 60px; }
   .nav-logo { font-size: 12px; }
   .nav-cta { height: 40px; padding: 0 22px; font-size: 12px; }
-
   .container { max-width: 640px; padding: 0 32px; }
   .section { padding: 72px 0; }
-
   .hero-inner { max-width: 640px; padding: 48px 32px; }
   .hero-sub { font-size: 16px; margin-bottom: 28px; }
-
-  /* Slideshow plus grand sur tablette */
-  .slideshow { height: 280px; }
-
-  /* Flèches visibles sur tablette+ */
+  .slideshow { height: 320px; }
   .slide-arrow { display: flex; }
   .slide-arrow.prev { left: 12px; }
   .slide-arrow.next { right: 12px; }
-
   .btn-primary { font-size: 15px; }
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 32px rgba(201,168,76,0.35);
-  }
-  .hero .btn-primary:hover {
-    animation: none;
-    box-shadow: 0 6px 32px rgba(201,168,76,0.35);
-  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 6px 32px rgba(201,168,76,0.35); }
+  .hero .btn-primary:hover { animation: none; box-shadow: 0 6px 32px rgba(201,168,76,0.35); }
   .btn-ghost:hover { color: var(--text); }
-
   .pain-cards { flex-direction: row; flex-wrap: wrap; }
   .pain-card { flex: 1 1 calc(50% - 5px); min-width: 240px; }
   .proof-grid { gap: 14px; }
@@ -376,20 +341,14 @@ nav {
 @media (min-width: 1024px) {
   .container { max-width: 960px; }
   .section { padding: 96px 0; }
-
-  /* Hero : texte centré, slideshow plus large */
-  .hero-inner {
-    max-width: 580px;
-    padding: 48px 0;
-  }
-  .slideshow { height: 320px; border-radius: var(--r-lg); }
+  .hero-inner { max-width: 580px; padding: 48px 0; }
+  .slideshow { height: 380px; border-radius: var(--r-lg); }
   .slide-arrow { width: 40px; height: 40px; font-size: 16px; }
   .slide-arrow.prev { left: 16px; }
   .slide-arrow.next { right: 16px; }
   .slideshow-dots { bottom: 14px; gap: 8px; }
   .slide-dot { width: 7px; height: 7px; }
   .slide-dot.active { width: 22px; }
-
   h1 { font-size: clamp(32px, 4vw, 48px); }
   .hero-sub { font-size: 17px; }
   .cta-stack { max-width: 440px; }
@@ -398,7 +357,7 @@ nav {
 @media (min-width: 1200px) {
   .container { max-width: 1080px; }
   .hero-inner { max-width: 620px; }
-  .slideshow { height: 360px; }
+  .slideshow { height: 420px; }
 }
 
 /* ============================================================
@@ -412,9 +371,7 @@ nav {
   border: 1px solid var(--border); border-radius: var(--r-md);
   transition: border-color 0.25s, transform 0.25s;
 }
-@media (min-width: 768px) {
-  .pain-card:hover { border-color: rgba(226,75,74,0.25); transform: translateY(-2px); }
-}
+@media (min-width: 768px) { .pain-card:hover { border-color: rgba(226,75,74,0.25); transform: translateY(-2px); } }
 .pain-icon {
   width: 40px; height: 40px; border-radius: var(--r-sm); flex-shrink: 0;
   background: rgba(226,75,74,0.1); border: 1px solid rgba(226,75,74,0.18);
@@ -428,11 +385,7 @@ nav {
    ============================================================ */
 .steps-section { border-top: 1px solid var(--border-gold); background: var(--surface); }
 .steps-grid { display: flex; flex-direction: column; gap: 0; margin-top: 28px; position: relative; }
-.steps-grid::before {
-  content: ''; position: absolute;
-  left: 28px; top: 32px; bottom: 32px;
-  width: 1px; background: linear-gradient(to bottom, var(--gold-border), transparent);
-}
+.steps-grid::before { content: ''; position: absolute; left: 28px; top: 32px; bottom: 32px; width: 1px; background: linear-gradient(to bottom, var(--gold-border), transparent); }
 .step-item { display: flex; gap: 16px; align-items: flex-start; padding: 20px 0; position: relative; }
 .step-num {
   width: 40px; height: 40px; border-radius: 50%;
@@ -448,105 +401,51 @@ nav {
   .steps-grid { flex-direction: row; gap: 24px; }
   .steps-grid::before { display: none; }
   .step-item { flex: 1; flex-direction: column; align-items: center; text-align: center; padding: 0; gap: 12px; }
-  .step-item:not(:last-child)::after {
-    content: '→'; position: absolute; right: -16px; top: 20px;
-    color: var(--gold-dim); font-size: 18px;
-  }
+  .step-item:not(:last-child)::after { content: '→'; position: absolute; right: -16px; top: 20px; color: var(--gold-dim); font-size: 18px; }
 }
 
 /* ============================================================
    PROOF
    ============================================================ */
-.proof-section {
-  background: var(--surface);
-  border-top: 1px solid var(--border-gold);
-  border-bottom: 1px solid var(--border-gold);
-}
+.proof-section { background: var(--surface); border-top: 1px solid var(--border-gold); border-bottom: 1px solid var(--border-gold); }
 .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
-.pcard {
-  aspect-ratio: 3/4; border-radius: var(--r-md);
-  overflow: hidden; position: relative;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-@media (min-width: 1024px) {
-  .pcard:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
-}
+.pcard { aspect-ratio: 3/4; border-radius: var(--r-md); overflow: hidden; position: relative; -webkit-tap-highlight-color: transparent; transition: transform 0.3s, box-shadow 0.3s; }
+@media (min-width: 1024px) { .pcard:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); } }
 .pcard img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pcard-mark {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(201,168,76,0.7); text-align: center;
-  padding: 18px 8px 8px; font-family: 'DM Sans', sans-serif;
-}
+.pcard-mark { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(201,168,76,0.7); text-align: center; padding: 18px 8px 8px; font-family: 'DM Sans', sans-serif; }
 .proof-caption { margin-top: 12px; text-align: center; font-size: 11px; color: var(--muted); font-style: italic; }
 
 /* ============================================================
    TESTIMONIALS
    ============================================================ */
 .testi-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
-.testi-card {
-  background: var(--surface2); border: 1px solid var(--border-gold);
-  border-radius: var(--r-lg); padding: 22px 18px; position: relative;
-}
-.testi-card::before {
-  content: '"'; font-family: 'Playfair Display', serif;
-  font-size: 64px; line-height: 1; color: var(--gold); opacity: 0.12;
-  position: absolute; top: 6px; left: 14px; pointer-events: none;
-}
+.testi-card { background: var(--surface2); border: 1px solid var(--border-gold); border-radius: var(--r-lg); padding: 22px 18px; position: relative; }
+.testi-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 64px; line-height: 1; color: var(--gold); opacity: 0.12; position: absolute; top: 6px; left: 14px; pointer-events: none; }
 .testi-stars { font-size: 13px; margin-bottom: 10px; letter-spacing: 1px; }
 .testi-text { font-size: 14px; color: rgba(240,236,224,0.78); font-style: italic; line-height: 1.75; padding-top: 10px; }
 .testi-author { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
-.testi-av {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-dim), #4a3015);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 600; color: rgba(255,215,115,0.9); flex-shrink: 0;
-}
+.testi-av { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dim), #4a3015); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: rgba(255,215,115,0.9); flex-shrink: 0; }
 .testi-name { font-size: 13px; font-weight: 500; color: var(--text); }
 .testi-loc { font-size: 11px; color: var(--muted); }
-@media (min-width: 1024px) {
-  .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-}
+@media (min-width: 1024px) { .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; } }
 
 /* ============================================================
    GETS
    ============================================================ */
 .gets-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
-.get-item {
-  display: flex; gap: 14px; padding: 15px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-md); align-items: flex-start;
-  transition: border-color 0.25s, transform 0.25s;
-}
-@media (min-width: 768px) {
-  .get-item:hover { border-color: var(--gold-border); transform: translateY(-2px); }
-}
-.get-icon {
-  width: 40px; height: 40px; border-radius: var(--r-sm);
-  background: var(--gold-bg); border: 1px solid var(--gold-border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
-}
+.get-item { display: flex; gap: 14px; padding: 15px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); align-items: flex-start; transition: border-color 0.25s, transform 0.25s; }
+@media (min-width: 768px) { .get-item:hover { border-color: var(--gold-border); transform: translateY(-2px); } }
+.get-icon { width: 40px; height: 40px; border-radius: var(--r-sm); background: var(--gold-bg); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
 .get-title { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 3px; }
 .get-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
 .bonus-item { border-color: rgba(201,168,76,0.22); background: rgba(201,168,76,0.04); }
-.bonus-badge {
-  display: inline-block; font-size: 8px; font-weight: 700;
-  letter-spacing: 0.1em; padding: 2px 7px; border-radius: 2px;
-  background: var(--gold); color: var(--black); margin-bottom: 4px;
-}
+.bonus-badge { display: inline-block; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; padding: 2px 7px; border-radius: 2px; background: var(--gold); color: var(--black); margin-bottom: 4px; }
 
 /* ============================================================
    OBJECTIONS
    ============================================================ */
 .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 24px; }
-.obj-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 12px 12px; border-radius: var(--r-sm);
-  font-size: 12px; min-height: 44px;
-}
+.obj-item { display: flex; align-items: center; gap: 8px; padding: 12px 12px; border-radius: var(--r-sm); font-size: 12px; min-height: 44px; }
 .obj-no { background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
 .obj-yes { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15); color: rgba(240,236,224,0.7); }
 .obj-x { color: var(--danger); font-size: 14px; flex-shrink: 0; line-height: 1; }
@@ -556,83 +455,33 @@ nav {
    PRICING
    ============================================================ */
 .price-section { background: var(--surface); border-top: 1px solid var(--border-gold); }
-.price-box {
-  background: var(--black); border: 1px solid var(--border-gold);
-  border-radius: var(--r-lg); padding: 26px 20px;
-  margin-top: 28px; position: relative; overflow: hidden;
-}
-.price-box::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
-}
+.price-box { background: var(--black); border: 1px solid var(--border-gold); border-radius: var(--r-lg); padding: 26px 20px; margin-top: 28px; position: relative; overflow: hidden; }
+.price-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
 .price-crossed { font-size: 15px; text-decoration: line-through; color: var(--muted); margin-bottom: 2px; }
 .price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
 .price-curr { font-size: 16px; color: var(--gold-dim); margin-right: 2px; }
 .price-big { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: var(--gold); line-height: 1; }
 .price-note { font-size: 11px; color: var(--muted); margin-bottom: 18px; }
-.urgency-bar {
-  display: flex; align-items: center; gap: 10px;
-  padding: 11px 14px; background: rgba(201,168,76,0.07);
-  border: 1px solid rgba(201,168,76,0.18); border-radius: var(--r-sm);
-  margin-bottom: 18px; font-size: 12px; color: rgba(218,182,72,0.9);
-}
-.u-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gold); flex-shrink: 0; animation: blink 1.8s infinite;
-}
+.urgency-bar { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.18); border-radius: var(--r-sm); margin-bottom: 18px; font-size: 12px; color: rgba(218,182,72,0.9); }
+.u-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; animation: blink 1.8s infinite; }
 .includes { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
 .inc-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(240,236,224,0.7); }
 .inc-check { color: var(--gold); flex-shrink: 0; margin-top: 1px; }
-.btn-whatsapp {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 52px; width: 100%;
-  background: var(--success); color: #fff;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 600;
-  border-radius: var(--r-sm); text-decoration: none;
-  margin-top: 10px; border: none; cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.18s, transform 0.15s, box-shadow 0.25s;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.2);
-}
+.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; width: 100%; background: var(--success); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; border-radius: var(--r-sm); text-decoration: none; margin-top: 10px; border: none; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background 0.18s, transform 0.15s, box-shadow 0.25s; box-shadow: 0 4px 20px rgba(37,211,102,0.2); }
 .btn-whatsapp:active { background: #1ea550; transform: scale(0.98); }
-@media (min-width: 768px) {
-  .btn-whatsapp:hover { background: #20c05c; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(37,211,102,0.3); }
-  .price-box { padding: 32px 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
-}
-.guarantee {
-  display: flex; align-items: center; justify-content: center; gap: 5px;
-  margin-top: 14px; font-size: 11px; color: rgba(255,255,255,0.22); text-align: center;
-}
+@media (min-width: 768px) { .btn-whatsapp:hover { background: #20c05c; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(37,211,102,0.3); } .price-box { padding: 32px 28px; max-width: 520px; margin-left: auto; margin-right: auto; } }
+.guarantee { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 14px; font-size: 11px; color: rgba(255,255,255,0.22); text-align: center; }
 
 /* ============================================================
    FAQ
    ============================================================ */
 .faq-list { margin-top: 24px; }
 .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
-.faq-btn {
-  display: flex; justify-content: space-between; align-items: center;
-  width: 100%; min-height: 56px;
-  background: none; border: none; padding: 16px 0;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 500; color: var(--text);
-  text-align: left; cursor: pointer; gap: 14px;
-  -webkit-tap-highlight-color: transparent; transition: color 0.2s;
-}
+.faq-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; min-height: 56px; background: none; border: none; padding: 16px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: var(--text); text-align: left; cursor: pointer; gap: 14px; -webkit-tap-highlight-color: transparent; transition: color 0.2s; }
 .faq-btn:hover { color: var(--gold); }
-.faq-icon {
-  width: 26px; height: 26px; border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.14);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: var(--muted); flex-shrink: 0;
-  transition: all 0.25s; line-height: 1;
-}
+.faq-icon { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--muted); flex-shrink: 0; transition: all 0.25s; line-height: 1; }
 .faq-item.open .faq-icon { border-color: var(--gold); color: var(--gold); transform: rotate(45deg); }
-.faq-answer {
-  font-size: 13px; color: var(--muted); line-height: 1.75;
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.32s ease, padding 0.32s;
-}
+.faq-answer { font-size: 13px; color: var(--muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.32s ease, padding 0.32s; }
 .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 18px; }
 
 /* ============================================================
@@ -641,20 +490,12 @@ nav {
 .final-section { text-align: center; border-top: 1px solid var(--border-gold); }
 .final-sub { font-size: 13px; color: var(--muted); margin-bottom: 26px; }
 .final-ctas { display: flex; flex-direction: column; gap: 10px; max-width: 420px; margin: 0 auto; }
-@media (min-width: 768px) {
-  .final-ctas { flex-direction: row; max-width: 520px; }
-  .final-ctas .btn-primary { flex: 2; }
-  .final-ctas .btn-whatsapp { flex: 1; margin-top: 0; }
-}
+@media (min-width: 768px) { .final-ctas { flex-direction: row; max-width: 520px; } .final-ctas .btn-primary { flex: 2; } .final-ctas .btn-whatsapp { flex: 1; margin-top: 0; } }
 
 /* ============================================================
    FOOTER
    ============================================================ */
-footer {
-  border-top: 1px solid rgba(255,255,255,0.05);
-  padding: 36px 20px calc(36px + env(safe-area-inset-bottom, 0px));
-  text-align: center; font-size: 11px; color: rgba(255,255,255,0.18); line-height: 2;
-}
+footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 36px 20px calc(36px + env(safe-area-inset-bottom, 0px)); text-align: center; font-size: 11px; color: rgba(255,255,255,0.18); line-height: 2; }
 footer a { color: rgba(255,255,255,0.26); text-decoration: none; transition: color 0.2s; }
 footer a:hover { color: var(--gold-dim); }
 .footer-logo { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; color: rgba(201,168,76,0.35); margin-bottom: 14px; }
@@ -662,20 +503,7 @@ footer a:hover { color: var(--gold-dim); }
 /* ============================================================
    STICKY WHATSAPP
    ============================================================ */
-.sticky-wa {
-  position: fixed;
-  bottom: max(20px, env(safe-area-inset-bottom, 20px));
-  right: 16px; z-index: 150;
-  display: flex; align-items: center; gap: 8px;
-  background: var(--success); color: #fff;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 600;
-  padding: 12px 16px; border-radius: 28px;
-  text-decoration: none;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-  -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.3s, transform 0.3s;
-}
+.sticky-wa { position: fixed; bottom: max(20px, env(safe-area-inset-bottom, 20px)); right: 16px; z-index: 150; display: flex; align-items: center; gap: 8px; background: var(--success); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; padding: 12px 16px; border-radius: 28px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.35); -webkit-tap-highlight-color: transparent; transition: opacity 0.3s, transform 0.3s; }
 .sticky-wa.hidden { opacity: 0; pointer-events: none; transform: translateY(8px); }
 @media (min-width: 768px) { .sticky-wa { display: none; } }
 
@@ -684,16 +512,10 @@ footer a:hover { color: var(--gold-dim); }
 /* ============================================================
    REVEAL
    ============================================================ */
-.reveal {
-  opacity: 0; transform: translateY(18px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .hero-pill     { animation: fadeUp 0.6s ease 0.05s both; }
 .hero h1       { animation: fadeUp 0.6s ease 0.15s both; }
 .hero-sub      { animation: fadeUp 0.6s ease 0.25s both; }
@@ -701,16 +523,15 @@ footer a:hover { color: var(--gold-dim); }
 .cta-stack     { animation: fadeUp 0.6s ease 0.45s both; }
 .social-proof  { animation: fadeUp 0.6s ease 0.55s both; }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
 
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-<a href="https://wa.me/TONNUM" class="sticky-wa" id="stickyWa" aria-label="Contacter sur WhatsApp">
+<!-- STICKY WHATSAPP AVEC NUMÉRO + MESSAGE -->
+<a href="https://wa.me/2250704891764?text=Bonjour%2C%20je%20veux%20commander%20AI%20Design%20Machine" class="sticky-wa" id="stickyWa" aria-label="Contacter sur WhatsApp">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   Question ?
 </a>
@@ -720,26 +541,6 @@ footer a:hover { color: var(--gold-dim); }
   <a href="#prix" class="nav-cta">5 000 F CFA →</a>
 </nav>
 
-<!-- ============================================================
-     HERO
-     ┌──────────────────────────────────┐
-     │ ● Mini-formation                 │
-     │                                  │
-     │ Tes affiches méritent            │
-     │ mieux qu'un <graphiste>          │
-     │                                  │
-     │ Sous-titre...                    │
-     │                                  │
-     │ ┌──────────────────────────────┐ │
-     │ │  🖼️  Affiche 1/4     ◄ ►   │ │  ← SLIDESHOW
-     │ │      · · ● ·                │ │
-     │ └──────────────────────────────┘ │
-     │                                  │
-     │ [═══ OBTENIR — 5 000 F ═══]    │  ← CTA
-     │ Voir des exemples                │
-     │ 👤👤👤👤 200+ formés             │
-     └──────────────────────────────────┘
-     ============================================================ -->
 <section class="hero">
   <div class="hero-inner">
 
@@ -750,77 +551,40 @@ footer a:hover { color: var(--gold-dim); }
 
     <h1>Vends plus avec de meilleures affiches en<br><em>5 min avec l'IA</em></h1>
 
-    <p class="hero-sub">Crée des visuels 100% pro depuis ton téléphone — en 5 minutes, sans Photoshop, sans budget design.</p>
+    <p class="hero-sub">Tout ce qu'il te faut, c'est ton téléphone. Zéro Photoshop, zéro compétence technique, zéro budget design.</p>
 
-    <!-- ============================================================
-         SLIDESHOW — 4 images entre le sub et le CTA
-         🎯 COMMENT REMPLACER LES IMAGES :
-         1. Crée un dossier "images/" dans ton repo GitHub
-         2. Upload 4 images nommées :
-            - affiche-1.jpg (cosmétique)
-            - affisse-2.jpg (mode)
-            - affiche-3.jpg (restaurant)
-            - affiche-4.jpg (tech)
-         3. Compresse-les sur tinypng.com (< 100 Ko chacune)
-         4. Le code les charge automatiquement
-
-         FORMAT IDÉAL des images :
-         - Portrait 3:4 (ex: 600×800px)
-         - JPG (pas PNG)
-         - < 100 Ko après compression
-         ============================================================ -->
     <div class="slideshow" id="slideshow" aria-label="Exemples d'affiches générées">
-
-      <!-- Barre de progression auto-play -->
       <div class="slide-progress" id="slideProgress"></div>
-
-      <!-- Track : les 4 slides côte à côte -->
       <div class="slideshow-track" id="slideTrack">
-
-        <!-- Slide 1 -->
         <div class="slideshow-slide">
-          <!-- 🎯 Remplace "images/affiche-1.jpg" par ton vrai chemin -->
           <img src="images/affiche-1.jpg" alt="Affiche cosmétique générée par IA" loading="eager">
           <div class="slide-label">Cosmétiques · Généré en 5 min</div>
         </div>
-
-        <!-- Slide 2 -->
         <div class="slideshow-slide">
           <img src="images/affiche-2.jpg" alt="Affiche mode générée par IA" loading="lazy">
           <div class="slide-label">Mode & Élégance · Généré en 5 min</div>
         </div>
-
-        <!-- Slide 3 -->
         <div class="slideshow-slide">
           <img src="images/affiche-3.jpg" alt="Affiche restaurant générée par IA" loading="lazy">
           <div class="slide-label">Restaurant · Généré en 5 min</div>
         </div>
-
-        <!-- Slide 4 -->
         <div class="slideshow-slide">
           <img src="images/affiche-4.jpg" alt="Affiche tech générée par IA" loading="lazy">
           <div class="slide-label">Tech & Électronique · Généré en 5 min</div>
         </div>
-
       </div>
-
-      <!-- Flèches (visibles desktop uniquement) -->
       <button class="slide-arrow prev" id="slidePrev" aria-label="Image précédente">‹</button>
       <button class="slide-arrow next" id="slideNext" aria-label="Image suivante">›</button>
-
-      <!-- Dots -->
       <div class="slideshow-dots" id="slideDots">
         <button class="slide-dot active" data-index="0" aria-label="Affiche 1"></button>
         <button class="slide-dot" data-index="1" aria-label="Affiche 2"></button>
         <button class="slide-dot" data-index="2" aria-label="Affiche 3"></button>
         <button class="slide-dot" data-index="3" aria-label="Affiche 4"></button>
       </div>
-
     </div>
-    <!-- FIN SLIDESHOW -->
 
     <div class="cta-stack">
-      <a href="#prix" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
+      <a href="https://marx-digital.mychariow.shop/ai-design-machine/checkout" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
       <button class="btn-ghost" onclick="document.getElementById('preuves').scrollIntoView({behavior:'smooth'})">Voir des exemples d'abord</button>
     </div>
 
@@ -862,7 +626,7 @@ footer a:hover { color: var(--gold-dim); }
           <div class="pain-icon" aria-hidden="true">😤</div>
           <div>
             <div class="pain-title">La concurrence te dépasse</div>
-            <div class="pain-desc">La boutique d'en face explose ses ventes avec des affiches qui claquent. Toi tu postes une image bancale.</div>
+            <div class="pain-desc">La boutique d'en face explose ses ventes avec des affiches qui claquent. Toi, tu postes une image bancale.</div>
           </div>
         </div>
       </div>
@@ -894,7 +658,7 @@ footer a:hover { color: var(--gold-dim); }
         <div class="step-item">
           <div class="step-num">3</div>
           <div>
-            <div class="step-title">Ta affiche pro est prête en 5 min</div>
+            <div class="step-title">Ton affiche pro est prête en 5 min</div>
             <div class="step-desc">Rendu identique à un graphiste professionnel. Tu télécharges, tu postes, tu vends.</div>
           </div>
         </div>
@@ -928,7 +692,6 @@ footer a:hover { color: var(--gold-dim); }
           <div class="pcard-mark">Généré avec la méthode</div>
         </div>
       </div>
-      <p class="proof-caption">↑ Remplace par tes vraies images générées</p>
       <div class="testi-grid">
         <div class="testi-card">
           <div class="testi-stars" aria-label="5 étoiles">⭐⭐⭐⭐⭐</div>
@@ -1047,8 +810,12 @@ footer a:hover { color: var(--gold-dim); }
           <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Bonus : L'Accroche Qui Vend (offert)</div>
           <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Accès aux futures mises à jour</div>
         </div>
-        <a href="#" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
-        <a href="https://wa.me/TONNUM" class="btn-whatsapp">
+        
+        <!-- BOUTON ACHAT DIRECT VERS LE CHECKOUT -->
+        <a href="https://marx-digital.mychariow.shop/ai-design-machine/checkout" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
+        
+        <!-- BOUTON WHATSAPP AVEC NUMÉRO + MESSAGE -->
+        <a href="https://wa.me/2250704891764?text=Bonjour%2C%20je%20veux%20commander%20AI%20Design%20Machine" class="btn-whatsapp">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp — Une question avant ?
         </a>
@@ -1106,8 +873,9 @@ footer a:hover { color: var(--gold-dim); }
       <h2>Prêt à lancer des promos<br>qui font enfin <em>vendre ?</em></h2>
       <p class="final-sub">Rejoins les 200+ entrepreneurs qui ont arrêté de jeter leur argent chez un graphiste.</p>
       <div class="final-ctas">
-        <a href="#prix" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
-        <a href="https://wa.me/TONNUM" class="btn-whatsapp">
+        <!-- BOUTON ACHAT FINAL VERS LE CHECKOUT -->
+        <a href="https://marx-digital.mychariow.shop/ai-design-machine/checkout" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
+        <a href="https://wa.me/2250704891764?text=Bonjour%2C%20je%20veux%20commander%20AI%20Design%20Machine" class="btn-whatsapp">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
@@ -1120,7 +888,7 @@ footer a:hover { color: var(--gold-dim); }
 <footer>
   <div class="container">
     <div class="footer-logo">MARX DIGITAL EMPIRE</div>
-    <div>© 2025 Marx Digital Empire · Tous droits réservés</div>
+    <div>© 2026 Marx Digital Empire · Tous droits réservés</div>
     <div style="margin-top:6px;">
       <a href="#">Mentions légales</a> · <a href="#">CGU</a> · <a href="#">Confidentialité</a>
     </div>
@@ -1131,9 +899,7 @@ footer a:hover { color: var(--gold-dim); }
 </footer>
 
 <script>
-/* ============================================================
-   SLIDESHOW — Auto-play, swipe, dots, flèches
-   ============================================================ */
+/* SLIDESHOW */
 (function() {
   const track = document.getElementById('slideTrack');
   const dots = document.querySelectorAll('.slide-dot');
@@ -1148,167 +914,76 @@ footer a:hover { color: var(--gold-dim); }
   let autoTimer = null;
   let progressTimer = null;
   let progressValue = 0;
-  const interval = 4000; // 4 secondes par slide
+  const interval = 4000;
 
   function goTo(index) {
-    // Boucle infinie
     if (index < 0) index = total - 1;
     if (index >= total) index = 0;
     current = index;
     track.style.transform = 'translateX(-' + (current * 100) + '%)';
-
-    // Mettre à jour les dots
-    dots.forEach(function(d, i) {
-      d.classList.toggle('active', i === current);
-    });
-
-    // Reset la barre de progression
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
     resetProgress();
   }
 
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
 
-  // Barre de progression auto-play
   function resetProgress() {
     progressValue = 0;
     progressBar.style.width = '0%';
     clearInterval(progressTimer);
     clearTimeout(autoTimer);
-
     progressTimer = setInterval(function() {
       progressValue += 100 / (interval / 50);
       progressBar.style.width = Math.min(progressValue, 100) + '%';
     }, 50);
-
-    autoTimer = setTimeout(function() {
-      next();
-    }, interval);
+    autoTimer = setTimeout(function() { next(); }, interval);
   }
 
-  // Flèches
   if (prevBtn) prevBtn.addEventListener('click', function() { prev(); });
   if (nextBtn) nextBtn.addEventListener('click', function() { next(); });
+  dots.forEach(function(dot) { dot.addEventListener('click', function() { goTo(parseInt(this.dataset.index)); }); });
 
-  // Dots
-  dots.forEach(function(dot) {
-    dot.addEventListener('click', function() {
-      goTo(parseInt(this.dataset.index));
-    });
-  });
-
-  // Touch swipe
   var startX = 0;
   var isDragging = false;
-
-  track.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-    // Pause l'auto-play pendant le swipe
-    clearTimeout(autoTimer);
-    clearInterval(progressTimer);
-  }, { passive: true });
-
-  track.addEventListener('touchmove', function(e) {
-    // Rien à faire pendant le move, on capture juste la fin
-  }, { passive: true });
-
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; isDragging = true; clearTimeout(autoTimer); clearInterval(progressTimer); }, { passive: true });
   track.addEventListener('touchend', function(e) {
-    if (!isDragging) return;
-    isDragging = false;
-    var endX = e.changedTouches[0].clientX;
-    var diff = startX - endX;
-
-    // Swipe min 40px pour changer de slide
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) next();
-      else prev();
-    } else {
-      // Pas assez de swipe → reprend l'auto-play
-      resetProgress();
-    }
+    if (!isDragging) return; isDragging = false;
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { if (diff > 0) next(); else prev(); } else { resetProgress(); }
   }, { passive: true });
 
-  // Pause auto-play quand la souris est sur le slideshow (desktop)
   var slideshow = document.getElementById('slideshow');
   if (slideshow) {
-    slideshow.addEventListener('mouseenter', function() {
-      clearTimeout(autoTimer);
-      clearInterval(progressTimer);
-    });
-    slideshow.addEventListener('mouseleave', function() {
-      resetProgress();
-    });
+    slideshow.addEventListener('mouseenter', function() { clearTimeout(autoTimer); clearInterval(progressTimer); });
+    slideshow.addEventListener('mouseleave', function() { resetProgress(); });
   }
-
-  // Démarrer
   resetProgress();
 })();
 
-
-/* ============================================================
-   FAQ
-   ============================================================ */
+/* FAQ */
 function toggleFaq(btn) {
   var item = btn.closest('.faq-item');
   var isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function(el) {
-    el.classList.remove('open');
-    el.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
-  });
-  if (!isOpen) {
-    item.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-  }
+  document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('open'); el.querySelector('.faq-btn').setAttribute('aria-expanded', 'false'); });
+  if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
 }
 
-/* ============================================================
-   REVEAL ON SCROLL
-   ============================================================ */
+/* REVEAL */
 var reveals = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  var io = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   reveals.forEach(function(el) { io.observe(el); });
-} else {
-  reveals.forEach(function(el) { el.classList.add('visible'); });
-}
+} else { reveals.forEach(function(el) { el.classList.add('visible'); }); }
 
-/* ============================================================
-   STICKY WHATSAPP
-   ============================================================ */
+/* STICKY WA */
 var wa = document.getElementById('stickyWa');
 var heroCta = document.querySelector('.hero .cta-stack');
-if (wa && heroCta) {
-  var waObs = new IntersectionObserver(function(entries) {
-    wa.classList.toggle('hidden', entries[0].isIntersecting);
-  }, { threshold: 0.5 });
-  waObs.observe(heroCta);
-}
+if (wa && heroCta) { var waObs = new IntersectionObserver(function(entries) { wa.classList.toggle('hidden', entries[0].isIntersecting); }, { threshold: 0.5 }); waObs.observe(heroCta); }
 
-/* ============================================================
-   SCROLL PROGRESS BAR
-   ============================================================ */
+/* SCROLL PROGRESS */
 var scrollBar = document.getElementById('scrollProgress');
-if (scrollBar) {
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        var s = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        scrollBar.style.width = Math.min(s * 100, 100) + '%';
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-}
+if (scrollBar) { var ticking = false; window.addEventListener('scroll', function() { if (!ticking) { requestAnimationFrame(function() { var s = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight); scrollBar.style.width = Math.min(s * 100, 100) + '%'; ticking = false; }); ticking = true; } }, { passive: true }); }
 </script>
 </body>
 </html>
