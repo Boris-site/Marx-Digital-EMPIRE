@@ -5,9 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="theme-color" content="#080808"/>
 <title>AI Design Machine — Affiches pro depuis ton téléphone</title>
+
+<!-- ✅ PIXEL FACEBOOK -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '904434498883497');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=904434498883497&ev=PageView&noscript=1"/></noscript>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500;9..600&display=swap" rel="stylesheet"/>
+
+<!-- ✅ WIDGET CHARIOW CSS -->
+<link rel="stylesheet" href="https://js.chariowcdn.com/v1/widget.min.css"/>
+
 <style>
 :root {
   --gold:       #C9A84C;
@@ -74,9 +92,7 @@ h2 em { font-style: italic; color: var(--gold); }
 .container { width: 100%; max-width: 480px; margin: 0 auto; padding: 0 20px; }
 .section { padding: 56px 0; }
 
-/* ============================================================
-   NAV
-   ============================================================ */
+/* NAV */
 nav {
   position: sticky; top: 0; z-index: 200;
   background: rgba(8,8,8,0.96);
@@ -96,12 +112,11 @@ nav {
   letter-spacing: 0.04em; white-space: nowrap;
   transition: background 0.2s, box-shadow 0.2s;
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer; border: none;
 }
 .nav-cta:active { background: var(--gold-light); }
 
-/* ============================================================
-   HERO
-   ============================================================ */
+/* HERO */
 .hero {
   min-height: 100svh;
   min-height: -webkit-fill-available;
@@ -109,7 +124,6 @@ nav {
   position: relative; overflow: hidden;
   background: var(--black);
 }
-
 .hero-inner {
   position: relative; z-index: 1;
   flex: 1;
@@ -119,7 +133,6 @@ nav {
   padding-bottom: max(28px, env(safe-area-inset-bottom, 28px));
   max-width: 480px; margin: 0 auto; width: 100%;
 }
-
 .hero-pill {
   display: inline-flex; align-items: center; gap: 7px;
   background: rgba(201,168,76,0.1);
@@ -151,9 +164,7 @@ nav {
   line-height: 1.6;
 }
 
-/* ============================================================
-   SLIDESHOW
-   ============================================================ */
+/* SLIDESHOW */
 .slideshow {
   position: relative;
   width: 100%;
@@ -168,94 +179,50 @@ nav {
   -webkit-user-select: none;
   background: #0a0a0a;
 }
-
 .slideshow-track {
-  display: flex;
-  height: 100%;
+  display: flex; height: 100%;
   transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
   will-change: transform;
 }
-
 .slideshow-slide {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  position: relative;
+  flex: 0 0 100%; width: 100%; height: 100%; position: relative;
 }
 .slideshow-slide img {
-  width: 100%; height: 100%;
-  object-fit: contain;
-  display: block;
+  width: 100%; height: 100%; object-fit: contain; display: block;
 }
-
 .slide-label {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
+  position: absolute; bottom: 0; left: 0; right: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
   padding: 28px 12px 10px;
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(201,168,76,0.65);
-  text-align: center;
-  font-family: 'DM Sans', sans-serif;
-  pointer-events: none;
+  font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(201,168,76,0.65); text-align: center;
+  font-family: 'DM Sans', sans-serif; pointer-events: none;
 }
-
 .slideshow-dots {
-  position: absolute;
-  bottom: 10px; left: 50%;
-  transform: translateX(-50%);
-  display: flex; gap: 6px;
-  z-index: 5;
+  position: absolute; bottom: 10px; left: 50%;
+  transform: translateX(-50%); display: flex; gap: 6px; z-index: 5;
 }
 .slide-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
+  width: 6px; height: 6px; border-radius: 50%;
   background: rgba(255,255,255,0.2);
   border: none; padding: 0; cursor: pointer;
-  transition: all 0.3s;
-  -webkit-tap-highlight-color: transparent;
+  transition: all 0.3s; -webkit-tap-highlight-color: transparent;
 }
-.slide-dot.active {
-  background: var(--gold);
-  width: 18px;
-  border-radius: 3px;
-  box-shadow: 0 0 8px rgba(201,168,76,0.4);
-}
-
+.slide-dot.active { background: var(--gold); width: 18px; border-radius: 3px; box-shadow: 0 0 8px rgba(201,168,76,0.4); }
 .slide-arrow {
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: #fff;
-  display: none;
-  align-items: center; justify-content: center;
-  cursor: pointer; z-index: 5;
-  font-size: 14px;
-  transition: background 0.2s, border-color 0.2s;
-  -webkit-tap-highlight-color: transparent;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+  color: #fff; display: none; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 5; font-size: 14px;
+  transition: background 0.2s, border-color 0.2s; -webkit-tap-highlight-color: transparent;
 }
-.slide-arrow:hover {
-  background: rgba(201,168,76,0.2);
-  border-color: rgba(201,168,76,0.3);
-}
+.slide-arrow:hover { background: rgba(201,168,76,0.2); border-color: rgba(201,168,76,0.3); }
 .slide-arrow.prev { left: 8px; }
 .slide-arrow.next { right: 8px; }
+.slide-progress { position: absolute; top: 0; left: 0; height: 2px; background: var(--gold); z-index: 5; width: 0%; transition: width 0.1s linear; }
 
-.slide-progress {
-  position: absolute;
-  top: 0; left: 0; height: 2px;
-  background: var(--gold);
-  z-index: 5;
-  width: 0%;
-  transition: width 0.1s linear;
-}
-
-/* ---- CTA ---- */
+/* CTA */
 .cta-stack { display: flex; flex-direction: column; gap: 10px; }
 .btn-primary {
   display: flex; align-items: center; justify-content: center;
@@ -276,8 +243,7 @@ nav {
   color: var(--muted); text-decoration: underline;
   text-underline-offset: 3px;
   background: none; border: none; cursor: pointer; width: 100%;
-  -webkit-tap-highlight-color: transparent;
-  transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent; transition: color 0.2s;
 }
 .btn-ghost:active { color: var(--text); }
 
@@ -287,28 +253,15 @@ nav {
   50%      { box-shadow: 0 4px 36px rgba(201,168,76,0.4); }
 }
 
+/* ✅ SOCIAL PROOF MODIFIÉE */
 .social-proof {
   display: flex; align-items: center; gap: 10px;
-  margin-top: 20px; font-size: 11px; color: var(--muted);
+  margin-top: 20px; font-size: 12px; color: rgba(240,236,224,0.55);
+  font-style: italic;
 }
-.avatars { display: flex; }
-.av {
-  width: 24px; height: 24px; border-radius: 50%;
-  border: 2px solid var(--black);
-  font-size: 8px; font-weight: 600;
-  display: flex; align-items: center; justify-content: center;
-  margin-left: -7px; flex-shrink: 0;
-}
-.av:first-child { margin-left: 0; }
-.av1 { background: #2d6a4f; color: #95d5b2; }
-.av2 { background: #3d405b; color: #9999cc; }
-.av3 { background: #6b3a2a; color: #e8a87c; }
-.av4 { background: #2c3e50; color: #85c1e9; }
-.sp-number { color: var(--gold); font-weight: 600; }
+.sp-icon { font-size: 14px; flex-shrink: 0; }
 
-/* ============================================================
-   TABLETTE (768px+)
-   ============================================================ */
+/* TABLETTE */
 @media (min-width: 768px) {
   nav { padding: 0 32px; height: 60px; }
   .nav-logo { font-size: 12px; }
@@ -327,7 +280,6 @@ nav {
   .btn-ghost:hover { color: var(--text); }
   .pain-cards { flex-direction: row; flex-wrap: wrap; }
   .pain-card { flex: 1 1 calc(50% - 5px); min-width: 240px; }
-  .proof-grid { gap: 14px; }
   .gets-list { flex-direction: row; flex-wrap: wrap; }
   .get-item { flex: 1 1 calc(50% - 5px); min-width: 240px; }
   .bonus-item { flex: 1 1 100%; }
@@ -335,9 +287,7 @@ nav {
   .price-box { padding: 32px 28px; }
 }
 
-/* ============================================================
-   DESKTOP (1024px+)
-   ============================================================ */
+/* DESKTOP */
 @media (min-width: 1024px) {
   .container { max-width: 960px; }
   .section { padding: 96px 0; }
@@ -353,16 +303,13 @@ nav {
   .hero-sub { font-size: 17px; }
   .cta-stack { max-width: 440px; }
 }
-
 @media (min-width: 1200px) {
   .container { max-width: 1080px; }
   .hero-inner { max-width: 620px; }
   .slideshow { height: 420px; }
 }
 
-/* ============================================================
-   PAIN
-   ============================================================ */
+/* PAIN */
 .pain-section { border-top: 1px solid var(--border-gold); }
 .pain-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
 .pain-card {
@@ -380,9 +327,7 @@ nav {
 .pain-title { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 4px; }
 .pain-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
 
-/* ============================================================
-   STEPS
-   ============================================================ */
+/* STEPS */
 .steps-section { border-top: 1px solid var(--border-gold); background: var(--surface); }
 .steps-grid { display: flex; flex-direction: column; gap: 0; margin-top: 28px; position: relative; }
 .steps-grid::before { content: ''; position: absolute; left: 28px; top: 32px; bottom: 32px; width: 1px; background: linear-gradient(to bottom, var(--gold-border), transparent); }
@@ -404,34 +349,81 @@ nav {
   .step-item:not(:last-child)::after { content: '→'; position: absolute; right: -16px; top: 20px; color: var(--gold-dim); font-size: 18px; }
 }
 
-/* ============================================================
-   PROOF
-   ============================================================ */
+/* PROOF */
 .proof-section { background: var(--surface); border-top: 1px solid var(--border-gold); border-bottom: 1px solid var(--border-gold); }
 .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
 .pcard { aspect-ratio: 3/4; border-radius: var(--r-md); overflow: hidden; position: relative; -webkit-tap-highlight-color: transparent; transition: transform 0.3s, box-shadow 0.3s; }
 @media (min-width: 1024px) { .pcard:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); } }
 .pcard img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pcard-mark { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(201,168,76,0.7); text-align: center; padding: 18px 8px 8px; font-family: 'DM Sans', sans-serif; }
-.proof-caption { margin-top: 12px; text-align: center; font-size: 11px; color: var(--muted); font-style: italic; }
 
-/* ============================================================
-   TESTIMONIALS
-   ============================================================ */
-.testi-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
-.testi-card { background: var(--surface2); border: 1px solid var(--border-gold); border-radius: var(--r-lg); padding: 22px 18px; position: relative; }
-.testi-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 64px; line-height: 1; color: var(--gold); opacity: 0.12; position: absolute; top: 6px; left: 14px; pointer-events: none; }
-.testi-stars { font-size: 13px; margin-bottom: 10px; letter-spacing: 1px; }
-.testi-text { font-size: 14px; color: rgba(240,236,224,0.78); font-style: italic; line-height: 1.75; padding-top: 10px; }
-.testi-author { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
-.testi-av { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-dim), #4a3015); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: rgba(255,215,115,0.9); flex-shrink: 0; }
-.testi-name { font-size: 13px; font-weight: 500; color: var(--text); }
-.testi-loc { font-size: 11px; color: var(--muted); }
-@media (min-width: 1024px) { .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; } }
+/* ✅ BLOC CIBLE */
+.target-block {
+  margin-top: 32px;
+  background: var(--surface2);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.target-block::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.target-block-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: #fff;
+  margin-bottom: 18px; line-height: 1.3;
+}
+.target-block-title em { font-style: italic; color: var(--gold); }
+.target-list { display: flex; flex-direction: column; gap: 12px; }
+.target-item {
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.target-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+  font-size: 11px; color: var(--gold); font-weight: 700;
+}
+.target-text { font-size: 13px; color: rgba(240,236,224,0.78); line-height: 1.6; }
 
-/* ============================================================
-   GETS
-   ============================================================ */
+/* ✅ BLOC CALCUL */
+.calc-block {
+  margin-top: 14px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, rgba(201,168,76,0.02) 100%);
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  position: relative;
+}
+.calc-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+  background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 3px; padding: 3px 9px;
+}
+.calc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: #fff;
+  margin-bottom: 14px; line-height: 1.3;
+}
+.calc-text {
+  font-size: 13px; color: rgba(240,236,224,0.7); line-height: 1.8;
+  font-style: italic;
+}
+.calc-highlight {
+  display: inline; background: rgba(201,168,76,0.12);
+  border-radius: 3px; padding: 1px 5px;
+  color: var(--gold); font-style: normal; font-weight: 500;
+}
+
+/* GETS */
 .gets-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
 .get-item { display: flex; gap: 14px; padding: 15px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); align-items: flex-start; transition: border-color 0.25s, transform 0.25s; }
 @media (min-width: 768px) { .get-item:hover { border-color: var(--gold-border); transform: translateY(-2px); } }
@@ -441,9 +433,7 @@ nav {
 .bonus-item { border-color: rgba(201,168,76,0.22); background: rgba(201,168,76,0.04); }
 .bonus-badge { display: inline-block; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; padding: 2px 7px; border-radius: 2px; background: var(--gold); color: var(--black); margin-bottom: 4px; }
 
-/* ============================================================
-   OBJECTIONS
-   ============================================================ */
+/* OBJECTIONS */
 .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 24px; }
 .obj-item { display: flex; align-items: center; gap: 8px; padding: 12px 12px; border-radius: var(--r-sm); font-size: 12px; min-height: 44px; }
 .obj-no { background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
@@ -451,9 +441,7 @@ nav {
 .obj-x { color: var(--danger); font-size: 14px; flex-shrink: 0; line-height: 1; }
 .obj-check { color: var(--gold); font-size: 14px; flex-shrink: 0; line-height: 1; }
 
-/* ============================================================
-   PRICING
-   ============================================================ */
+/* PRICING */
 .price-section { background: var(--surface); border-top: 1px solid var(--border-gold); }
 .price-box { background: var(--black); border: 1px solid var(--border-gold); border-radius: var(--r-lg); padding: 26px 20px; margin-top: 28px; position: relative; overflow: hidden; }
 .price-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
@@ -467,14 +455,17 @@ nav {
 .includes { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
 .inc-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(240,236,224,0.7); }
 .inc-check { color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+/* ✅ WIDGET CHARIOW */
+.chariow-wrapper { margin-top: 12px; }
+#chariow-widget { width: 100%; }
+
 .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; width: 100%; background: var(--success); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; border-radius: var(--r-sm); text-decoration: none; margin-top: 10px; border: none; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background 0.18s, transform 0.15s, box-shadow 0.25s; box-shadow: 0 4px 20px rgba(37,211,102,0.2); }
 .btn-whatsapp:active { background: #1ea550; transform: scale(0.98); }
 @media (min-width: 768px) { .btn-whatsapp:hover { background: #20c05c; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(37,211,102,0.3); } .price-box { padding: 32px 28px; max-width: 520px; margin-left: auto; margin-right: auto; } }
 .guarantee { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 14px; font-size: 11px; color: rgba(255,255,255,0.22); text-align: center; }
 
-/* ============================================================
-   FAQ
-   ============================================================ */
+/* FAQ */
 .faq-list { margin-top: 24px; }
 .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
 .faq-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; min-height: 56px; background: none; border: none; padding: 16px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: var(--text); text-align: left; cursor: pointer; gap: 14px; -webkit-tap-highlight-color: transparent; transition: color 0.2s; }
@@ -484,34 +475,26 @@ nav {
 .faq-answer { font-size: 13px; color: var(--muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.32s ease, padding 0.32s; }
 .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 18px; }
 
-/* ============================================================
-   FINAL CTA
-   ============================================================ */
+/* FINAL CTA */
 .final-section { text-align: center; border-top: 1px solid var(--border-gold); }
 .final-sub { font-size: 13px; color: var(--muted); margin-bottom: 26px; }
 .final-ctas { display: flex; flex-direction: column; gap: 10px; max-width: 420px; margin: 0 auto; }
 @media (min-width: 768px) { .final-ctas { flex-direction: row; max-width: 520px; } .final-ctas .btn-primary { flex: 2; } .final-ctas .btn-whatsapp { flex: 1; margin-top: 0; } }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+/* FOOTER */
 footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 36px 20px calc(36px + env(safe-area-inset-bottom, 0px)); text-align: center; font-size: 11px; color: rgba(255,255,255,0.18); line-height: 2; }
 footer a { color: rgba(255,255,255,0.26); text-decoration: none; transition: color 0.2s; }
 footer a:hover { color: var(--gold-dim); }
 .footer-logo { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; color: rgba(201,168,76,0.35); margin-bottom: 14px; }
 
-/* ============================================================
-   STICKY WHATSAPP
-   ============================================================ */
+/* STICKY WHATSAPP */
 .sticky-wa { position: fixed; bottom: max(20px, env(safe-area-inset-bottom, 20px)); right: 16px; z-index: 150; display: flex; align-items: center; gap: 8px; background: var(--success); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; padding: 12px 16px; border-radius: 28px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.35); -webkit-tap-highlight-color: transparent; transition: opacity 0.3s, transform 0.3s; }
 .sticky-wa.hidden { opacity: 0; pointer-events: none; transform: translateY(8px); }
 @media (min-width: 768px) { .sticky-wa { display: none; } }
 
 .divider { height: 1px; background: var(--border-gold); }
 
-/* ============================================================
-   REVEAL
-   ============================================================ */
+/* REVEAL */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -530,7 +513,7 @@ footer a:hover { color: var(--gold-dim); }
 
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-<!-- STICKY WHATSAPP AVEC NUMÉRO + MESSAGE -->
+<!-- STICKY WHATSAPP -->
 <a href="https://wa.me/2250704891764?text=Bonjour%2C%20je%20veux%20commander%20AI%20Design%20Machine" class="sticky-wa" id="stickyWa" aria-label="Contacter sur WhatsApp">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   Question ?
@@ -538,7 +521,8 @@ footer a:hover { color: var(--gold-dim); }
 
 <nav>
   <span class="nav-logo">Marx Digital</span>
-  <a href="#prix" class="nav-cta">5 000 F CFA →</a>
+  <!-- ✅ NAV CTA → ouvre widget Chariow -->
+  <button class="nav-cta" onclick="openChariow()" aria-label="Commander AI Design Machine">5 000 F CFA →</button>
 </nav>
 
 <section class="hero">
@@ -584,18 +568,15 @@ footer a:hover { color: var(--gold-dim); }
     </div>
 
     <div class="cta-stack">
-      <a href="https://marx-digital.mychariow.shop/ai-design-machine/checkout" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
+      <!-- ✅ CTA HERO → ouvre widget Chariow -->
+      <button class="btn-primary" onclick="openChariow()">Obtenir AI Design Machine — 5 000 F CFA →</button>
       <button class="btn-ghost" onclick="document.getElementById('preuves').scrollIntoView({behavior:'smooth'})">Voir des exemples d'abord</button>
     </div>
 
+    <!-- ✅ SOCIAL PROOF MODIFIÉE -->
     <div class="social-proof">
-      <div class="avatars" aria-hidden="true">
-        <div class="av av1">AK</div>
-        <div class="av av2">MS</div>
-        <div class="av av3">FD</div>
-        <div class="av av4">RB</div>
-      </div>
-      <span><span class="sp-number">200+</span> entrepreneurs formés </span>
+      <span class="sp-icon">✦</span>
+      <span>Rejoins les premiers e-commerçants qui utilisent notre méthode</span>
     </div>
 
   </div>
@@ -692,30 +673,39 @@ footer a:hover { color: var(--gold-dim); }
           <div class="pcard-mark">Généré avec la méthode</div>
         </div>
       </div>
-      <div class="testi-grid">
-        <div class="testi-card">
-          <div class="testi-stars" aria-label="5 étoiles">⭐⭐⭐⭐⭐</div>
-          <p class="testi-text">"J'ai suivi le guide un dimanche après-midi. Le lundi matin, j'avais 3 messages de clients qui me demandaient le nom de mon graphiste."</p>
-          <div class="testi-author">
-            <div class="testi-av" aria-hidden="true">AK</div>
-            <div>
-              <div class="testi-name">Adjibi K.</div>
-              <div class="testi-loc">E-commerce, Abidjan</div>
-            </div>
+
+      <!-- ✅ BLOC 1 — Ce guide est fait pour toi si... -->
+      <div class="target-block">
+        <div class="target-block-title">Ce guide est fait pour toi <em>si…</em></div>
+        <div class="target-list">
+          <div class="target-item">
+            <div class="target-check">✓</div>
+            <div class="target-text">Tu gères un business en ligne et tu dois lancer des promos rapidement.</div>
           </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars" aria-label="5 étoiles">⭐⭐⭐⭐⭐</div>
-          <p class="testi-text">"Avant je payais 20 000 F par flyer. Maintenant j'en fais 5 en une heure, et mes clients me font plus de compliments qu'avant."</p>
-          <div class="testi-author">
-            <div class="testi-av" aria-hidden="true">MS</div>
-            <div>
-              <div class="testi-name">Salam M.</div>
-              <div class="testi-loc">Restaurant, Lomé</div>
-            </div>
+          <div class="target-item">
+            <div class="target-check">✓</div>
+            <div class="target-text">Tu en as marre d'attendre 48h qu'un graphiste te livre une affiche moyenne.</div>
+          </div>
+          <div class="target-item">
+            <div class="target-check">✓</div>
+            <div class="target-text">Tu veux tester de nouveaux produits sans risquer ton budget design à chaque fois.</div>
+          </div>
+          <div class="target-item">
+            <div class="target-check">✓</div>
+            <div class="target-text">Tu n'y connais absolument rien à l'intelligence artificielle ou à Photoshop.</div>
           </div>
         </div>
       </div>
+
+      <!-- ✅ BLOC 2 — Le calcul est vite fait -->
+      <div class="calc-block">
+        <div class="calc-eyebrow">💡 Le calcul est vite fait</div>
+        <div class="calc-title">Un investissement rentabilisé dès la première création.</div>
+        <div class="calc-text">
+          Aujourd'hui, une affiche basique chez un graphiste amateur coûte au minimum <span class="calc-highlight">5 000 FCFA</span>, à repayer à chaque promo. Pour le prix d'une seule affiche, vous obtenez ici le système complet pour générer vos propres visuels premium en illimité. Un investissement rentabilisé dès votre première création.
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -810,11 +800,23 @@ footer a:hover { color: var(--gold-dim); }
           <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Bonus : L'Accroche Qui Vend (offert)</div>
           <div class="inc-row"><span class="inc-check" aria-hidden="true">✓</span> Accès aux futures mises à jour</div>
         </div>
-        
-        <!-- BOUTON ACHAT DIRECT VERS LE CHECKOUT -->
-        <a href="https://marx-digital.mychariow.shop/ai-design-machine/checkout" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
-        
-        <!-- BOUTON WHATSAPP AVEC NUMÉRO + MESSAGE -->
+
+        <!-- ✅ WIDGET CHARIOW — PAIEMENT INTÉGRÉ -->
+        <div class="chariow-wrapper">
+          <div id="chariow-widget"
+               data-product-id="prd_jjj1jg"
+               data-store-domain="marx-digital.mychariow.shop"
+               data-style="frame"
+               data-border-style="rounded"
+               data-cta-width="xs"
+               data-cta-animation="none"
+               data-locale="en"
+               data-primary-color="#d6b224"
+               data-background-color="#2d2a2a">
+          </div>
+        </div>
+
+        <!-- WhatsApp fallback -->
         <a href="https://wa.me/2250704891764?text=Bonjour%2C%20je%20veux%20commander%20AI%20Design%20Machine" class="btn-whatsapp">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp — Une question avant ?
@@ -871,10 +873,10 @@ footer a:hover { color: var(--gold-dim); }
   <div class="container">
     <div class="reveal">
       <h2>Prêt à lancer des promos<br>qui font enfin <em>vendre ?</em></h2>
-      <p class="final-sub">Rejoins les 200+ entrepreneurs qui ont arrêté de jeter leur argent chez un graphiste.</p>
+      <p class="final-sub">Rejoins les premiers e-commerçants qui ont arrêté de jeter leur argent chez un graphiste.</p>
       <div class="final-ctas">
-        <!-- BOUTON ACHAT FINAL VERS LE CHECKOUT -->
-        <a href="https://marx-digital.mychariow.shop/ai-design-machine/checkout" class="btn-primary">Obtenir AI Design Machine — 5 000 F CFA →</a>
+        <!-- ✅ FINAL CTA → widget Chariow -->
+        <button class="btn-primary" onclick="openChariow()">Obtenir AI Design Machine — 5 000 F CFA →</button>
         <a href="https://wa.me/2250704891764?text=Bonjour%2C%20je%20veux%20commander%20AI%20Design%20Machine" class="btn-whatsapp">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
@@ -898,24 +900,41 @@ footer a:hover { color: var(--gold-dim); }
   </div>
 </footer>
 
+<!-- ✅ WIDGET CHARIOW JS -->
+<script>
+(function() {
+  var script = document.createElement('script');
+  script.src = 'https://js.chariowcdn.com/v1/widget.min.js';
+  script.async = true;
+  document.head.appendChild(script);
+})();
+
+// Fonction pour ouvrir le widget depuis n'importe quel CTA
+function openChariow() {
+  var widget = document.getElementById('chariow-widget');
+  if (widget) {
+    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Tente de déclencher le click sur le bouton du widget si disponible
+    var btn = widget.querySelector('button, [role="button"], a');
+    if (btn) btn.click();
+  } else {
+    // Fallback vers le checkout direct
+    window.location.href = 'https://marx-digital.mychariow.shop/ai-design-machine/checkout';
+  }
+}
+</script>
+
 <script>
 /* SLIDESHOW */
 (function() {
-  const track = document.getElementById('slideTrack');
-  const dots = document.querySelectorAll('.slide-dot');
-  const progressBar = document.getElementById('slideProgress');
-  const prevBtn = document.getElementById('slidePrev');
-  const nextBtn = document.getElementById('slideNext');
-
+  var track = document.getElementById('slideTrack');
+  var dots = document.querySelectorAll('.slide-dot');
+  var progressBar = document.getElementById('slideProgress');
+  var prevBtn = document.getElementById('slidePrev');
+  var nextBtn = document.getElementById('slideNext');
   if (!track) return;
-
-  const total = 4;
-  let current = 0;
-  let autoTimer = null;
-  let progressTimer = null;
-  let progressValue = 0;
-  const interval = 4000;
-
+  var total = 4, current = 0, autoTimer = null, progressTimer = null, progressValue = 0;
+  var interval = 4000;
   function goTo(index) {
     if (index < 0) index = total - 1;
     if (index >= total) index = 0;
@@ -924,35 +943,28 @@ footer a:hover { color: var(--gold-dim); }
     dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
     resetProgress();
   }
-
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
-
   function resetProgress() {
     progressValue = 0;
     progressBar.style.width = '0%';
-    clearInterval(progressTimer);
-    clearTimeout(autoTimer);
+    clearInterval(progressTimer); clearTimeout(autoTimer);
     progressTimer = setInterval(function() {
       progressValue += 100 / (interval / 50);
       progressBar.style.width = Math.min(progressValue, 100) + '%';
     }, 50);
     autoTimer = setTimeout(function() { next(); }, interval);
   }
-
   if (prevBtn) prevBtn.addEventListener('click', function() { prev(); });
   if (nextBtn) nextBtn.addEventListener('click', function() { next(); });
   dots.forEach(function(dot) { dot.addEventListener('click', function() { goTo(parseInt(this.dataset.index)); }); });
-
-  var startX = 0;
-  var isDragging = false;
+  var startX = 0, isDragging = false;
   track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; isDragging = true; clearTimeout(autoTimer); clearInterval(progressTimer); }, { passive: true });
   track.addEventListener('touchend', function(e) {
     if (!isDragging) return; isDragging = false;
     var diff = startX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) { if (diff > 0) next(); else prev(); } else { resetProgress(); }
   }, { passive: true });
-
   var slideshow = document.getElementById('slideshow');
   if (slideshow) {
     slideshow.addEventListener('mouseenter', function() { clearTimeout(autoTimer); clearInterval(progressTimer); });
@@ -984,6 +996,15 @@ if (wa && heroCta) { var waObs = new IntersectionObserver(function(entries) { wa
 /* SCROLL PROGRESS */
 var scrollBar = document.getElementById('scrollProgress');
 if (scrollBar) { var ticking = false; window.addEventListener('scroll', function() { if (!ticking) { requestAnimationFrame(function() { var s = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight); scrollBar.style.width = Math.min(s * 100, 100) + '%'; ticking = false; }); ticking = true; } }, { passive: true }); }
+
+/* ✅ PIXEL FACEBOOK — Événement InitiateCheckout sur les CTA */
+document.querySelectorAll('.btn-primary').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', { value: 5000, currency: 'XOF' });
+    }
+  });
+});
 </script>
 </body>
 </html>
